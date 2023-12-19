@@ -1,4 +1,5 @@
 # FAITH: Frequency-based Network Anomaly Detectiong Using State Machines
+[![Licence](https://img.shields.io/github/license/Ileriayo/markdown-badges?style=for-the-badge)](./LICENSE) ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 
 ## About 
 FAITH is a frequency-based method that employs state machines for the detection of network anomalies. FAITH learns a state machine exclusively from benign NetFlow data to model sequential network behavior. You can view the states of a learned state machine model as latent values that are useful for predicting future network behavior. Each state in the model represents a different kind of behavior (NetFlow sequence) observed in the benign data. FAITH extracts state visit frequency from the learned model and uses it to compute adaptive anomaly scores by comparing it to the expected frequencies observed at train time. Thus, whenever there is a kind of behavior that occurs more frequently at test time than at train time, FAITH raises an alarm. The key intuition behind FAITH is that such frequency increases are signals for anomalous activities such as network attacks. 
@@ -56,7 +57,7 @@ sorted_anomaly_groups = faith.group_predictions(prediction_results, test_data)
 ```
 
 ## Citation
-If you use ENCODE in your research, please cite the following paper:
+If you use FAITH in your research, please cite the following paper:
 ```
 @misc{cao2023FAITH,
       title={FAITH: Frequency-based Network Anomaly Detectiong Using State Machines}, 
