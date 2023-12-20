@@ -1,14 +1,10 @@
-import pandas as pd
 import numpy as np
 from collections import Counter
 from sklearn.metrics import roc_auc_score, roc_curve
 import matplotlib.pyplot as plt
-import math
-from flexfringe import FlexFringe
-import os
 from tqdm import tqdm
 import time
-from faith.faith import FAITH
+from faith import FAITH
 # from loguru import logger
 # logger.enable('flexfringe')
 
