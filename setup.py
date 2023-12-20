@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name='faith',
-    version='0.1.0',    
+    version='0.1.1',    
     description='Python package of FAITH, a frequency-based method that employs state machines for the detection of network anomalies.',
     long_description=long_description,
     long_description_content_type="text/markdown",

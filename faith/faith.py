@@ -1,25 +1,37 @@
-from ff_result_processor import *
-from model_operations import *
-from root_cause_operations import *
+from faith.ff_result_processor import *
+from faith.model_operations import *
+from faith.root_cause_operations import *
 import pandas as pd 
 
-INI_FOLDER = '../ini/'
-
 class FAITH:
-    def __init__(self, model:str, output_path: str):
+    def __init__(self, model:str, output_folder: str, ini_folder:str):
         """
         Contructs an object of the FAITH class.
 
         :param model: The type of model that should be learned using FAITH. Currently, we only support Markov Chains, State Machines, Symbol Frequency Model, and Tri-grams 
         :param output_path: The path where the output files of FAITH should be stored.
+        :param ini_folder: The path to the folder containing the INI files for training and running predictions with FlexFringe.
         """
         if model not in ['markov_chain', 'sm', 'symbol_freq', 'trigram']:
             raise ValueError('The model type provided is not supported. Please choose one of the following: markov_chain, sm, symbol_freq, trigram')
-    
+
+        if not os.path.exists(output_folder):
+            os.makedirs(output_folder)
+        
+        if not os.path.exists(ini_folder) or ini_folder == None:
+            raise ValueError('The provided INI folder does not exist. Please provide a valid path to the INI folder.')
+        
+        if not os.path.exists(ini_folder + model + '.ini'):
+            raise ValueError('No INI file for training could be found for the provided model type. Please make sure that a INI file exists (in the provided INI folder) with the name: ' + model + '.ini')
+
+        if not os.path.exists(ini_folder + model + '_predict.ini'):
+            raise ValueError('No INI file for prediction could be found for the provided model type. Please make sure that a INI file exists (in the provided INI folder) with the name: ' + model + '_predict.ini')
+
         self.model = model
-        self.ini_for_learning = INI_FOLDER + model + '.ini'
-        self.ini_for_prediction = INI_FOLDER + model + '_predict.ini'
-        self.output = output_path
+        self.ini_folder = ini_folder
+        self.ini_for_learning = ini_folder + model + '.ini'
+        self.ini_for_prediction = ini_folder + model + '_predict.ini'
+        self.output_folder = output_folder
 
     def learn_model(self, data_path: str):
         """
@@ -30,7 +42,7 @@ class FAITH:
 
         :param data_path: The path to the data file that should be used for learning a model.
         """
-        ff_output_file = self.output + '/' + self.model + '_train.ff'
+        ff_output_file = self.output_folder + self.model + '_train.ff'
         output_format = 'json'
         self.model_file = ff_output_file + '.final.' + output_format # store the location of the model file for later use (predictions).
         train(data_path , ff_output_file, output_format, self.ini_for_learning)
@@ -57,7 +69,7 @@ class FAITH:
         selected_columns_for_output = [
             'row nr',
             'last row nr',
-            'abbdingo trace',
+            'abbadingo trace',
             'state sequence',
             'sequence_anomaly_score',
             'anomaly_score',
