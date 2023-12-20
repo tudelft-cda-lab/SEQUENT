@@ -39,7 +39,7 @@ The code below shows how to use to train FAITH and how to use the trained model 
 from faith import FAITH
 
 # Initialize FAITH to train a state machine model
-faith = FAITH('sm', 'path/to/output/directory')
+faith = FAITH('sm', 'path/to/output/directory/', 'path/to/ini/folder/')
 training_data = 'path/to/training/data'
 faith.learn_model(training_data)
 
