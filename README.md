@@ -45,7 +45,7 @@ faith.learn_model(training_data)
 
 # Run FAITH on test data
 test_data = 'path/to/test/data'
-prediction_results = faith.predict(test_data)
+prediction_results = faith.investigate_data(test_data)
 
 """
 Group predictions by their root causes, rank the groups by their sizes and link the traces to the corresponding NetFlow data.
