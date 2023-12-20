@@ -40,7 +40,7 @@ def main():
             
             for encoding in encodings:
                 for i in range(10):
-                    faith = FAITH(model, input_folder)
+                    faith = FAITH(model, input_folder, 'ini/')
 
                     if encoding not in auc_scores:
                         auc_scores[encoding] = []
