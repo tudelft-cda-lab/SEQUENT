@@ -62,7 +62,7 @@ class FAITH:
             'sequence_anomaly_score',
             'anomaly_score',
             'root_cause_symbol',
-            # 'type' # this field should only be used for testing purposes. In practice, this field is not available. 
+            'type' # this field should only be used for testing purposes. In practice, this field is not available. 
         ]
 
         # first convert root cause symbols to strings.
