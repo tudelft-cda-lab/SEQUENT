@@ -8,12 +8,12 @@ class FAITH:
         """
         Contructs an object of the FAITH class.
 
-        :param model: The type of model that should be learned using FAITH. Currently, we only support Markov Chains, State Machines, Symbol Frequency Model, and Tri-grams 
+        :param model: The type of model that should be learned using FAITH. Currently, we only support Markov Chains and State Machines 
         :param output_path: The path where the output files of FAITH should be stored.
         :param ini_folder: The path to the folder containing the INI files for training and running predictions with FlexFringe.
         """
-        if model not in ['markov_chain', 'sm', 'symbol_freq', 'trigram']:
-            raise ValueError('The model type provided is not supported. Please choose one of the following: markov_chain, sm, symbol_freq, trigram')
+        if model not in ['markov_chain', 'sm']:
+            raise ValueError('The model type provided is not supported. Please choose one of the following: markov_chain, sm')
 
         if not os.path.exists(output_folder):
             os.makedirs(output_folder)
@@ -46,10 +46,19 @@ class FAITH:
         output_format = 'json'
         self.model_file = ff_output_file + '.final.' + output_format # store the location of the model file for later use (predictions).
         train(data_path , ff_output_file, output_format, self.ini_for_learning)
+
+
+    def compute_training_statistics(self, data_path: str):
+        """
+        Compute the state visits frequencies from the training data. This information is used later on for the
+        investigation of (new) data. Specifically, the statistics are used for computing rolling anomaly scores
+        of traces. 
+
+        :param data_path: The path to the training data that should be used for computing the state visit frequencies.
+        """
         training_predictions = predict(data_path , self.model_file, self.ini_for_prediction)
         self.train_state_counts = compute_state_frequencies(training_predictions['state sequence'].tolist()) # store the state frequencies for computing anomaly scores later on.
 
-    
     def investigate_data(self, data_path: str) -> pd.DataFrame:
         """
         Do an investigation of the data file provided in the "data_path" parameter and compute the anomaly 
@@ -74,6 +83,7 @@ class FAITH:
             'sequence_anomaly_score',
             'anomaly_score',
             'root_cause_symbol',
+            'sum scores',
             'type' # this field should only be used for testing purposes. In practice, this field is not available. 
         ]
 

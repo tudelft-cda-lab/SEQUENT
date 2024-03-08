@@ -24,7 +24,7 @@ def add_identity(axes, *line_args, **line_kwargs):
 def main():
     # print('Reading data...')
     datasets = ['ctu', 'elastic', 'ugr']
-    model_types = ['markov_chain', 'trigram', 'sm', 'symbol_freq']
+    model_types = ['markov_chain', 'sm']
     input_folder = 'data/'
     encodings = ['ENCODE', 'PERCENTILE', 'FREQUENCY']
 
@@ -54,7 +54,7 @@ def main():
                     faith.learn_model(training_file)
                     end = time.time()
                     train_time[encoding].append(end - start)
-
+                    faith.compute_training_statistics(training_file)
                     test_predictions = faith.investigate_data(test_file)
 
             
@@ -83,7 +83,7 @@ def main():
                     # plt.cla()
 
             # print('Writing AUC scores to file...')
-            with open(input_folder + dataset + '_' + model + '_auc_scores_10_runs_rolling_new.csv', 'a') as f:
+            with open(input_folder + dataset + '_' + model + '_auc_scores_10_runs_rolling.csv', 'a') as f:
                 f.write('encoding,AVG,STD\n')
                 for encoding in auc_scores:
                     f.write(encoding + ',' + str(np.mean(auc_scores[encoding])) + ',' + str(np.std(auc_scores[encoding])) + '\n')

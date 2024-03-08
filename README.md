@@ -42,6 +42,7 @@ from faith import FAITH
 faith = FAITH('sm', 'path/to/output/directory')
 training_data = 'path/to/training/data'
 faith.learn_model(training_data)
+faith.compute_training_statistics(training_data)
 
 # Run FAITH on test data
 test_data = 'path/to/test/data'
