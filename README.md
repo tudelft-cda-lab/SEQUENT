@@ -1,4 +1,4 @@
-# FAITH: Frequency-based Network Anomaly Detectiong Using State Machines
+# FAITH: Frequency-based Network Anomaly Detection Using State Machines
 [![Licence](https://img.shields.io/github/license/Ileriayo/markdown-badges?style=for-the-badge)](./LICENSE) ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 
 ## About 
@@ -7,7 +7,7 @@ FAITH is a frequency-based method that employs state machines for the detection 
 A well-known challenge faced by many security analysts in their daily work routine is the large volume of alerts raised by the anomaly/intrusion detection system, turning the inspection of alerts to a labor-intensive task. The sheer volume of alerts makes it difficult for an analyst to prioritize which anomalies they should inspect first. FAITH addresses this issue by computing root causes for each detected anomaly. The root causes offer the ability to group and rank anomalies; once anomalies are grouped by their root causes, an analyst can use the frequency of the root causes to rank groups of anomalies. The analysts can then use the ranking to prioritize which group anomalies they should inspect. Additionally, FAITH establishes links between the root causes and the corresponding network data. The objective is to provide analysts with concrete instances of anomalous network behavior, enabling a quick and in-depth analysis of the discovered anomalies. 
 
 ## Installation
-FAITH can be installed by running first cloning this repository and then running the following command in your terminal:
+FAITH can be installed by first cloning this repository and then running the following command in your terminal:
 ```
 pip install .
 ```
@@ -16,7 +16,7 @@ Alternatively, you can install FAITH by running the following command in your te
 ```
 pip install git+https://github.com/tudelft-cda-lab/FAITH.git
 ```
-Running `pip install` shoudl already install the required dependencies of FAITH. However, if you would like to use the exact version of dependencies that we ue, you can install them by running the following command in your terminal:
+Running `pip install` should already install the required dependencies of FAITH. However, if you would like to use the exact version of dependencies that we use, you can install them by running the following command in your terminal:
 ```
 pip install -r requirements.txt
 ```
@@ -32,7 +32,7 @@ pip install git+https://github.com/ClintonCao/FlexFringe-python.git
 ```
 
 ## Usage
-The code below shows how to use to train FAITH and how to use the trained model to detect anomalies. You can also have a look at the experiment code on the `experiment_code` branch to see how we use FAITH to detect anomalies on the AssureMOSS, CTU-13 and UGR-16 datasets. 
+The code below shows how to train FAITH and how to use the trained model to detect anomalies. You can also have a look at the experiment code on the `experiment_code` branch to see how we use FAITH to detect anomalies on the AssureMOSS, CTU-13, and UGR-16 datasets. 
 
 ```python
 
@@ -49,8 +49,8 @@ test_data = 'path/to/test/data'
 prediction_results = faith.investigate_data(test_data)
 
 """
-Group predictions by their root causes, rank the groups by their sizes and link the traces to the corresponding NetFlow data.
-The returned sorted_anomaly_groups is a list of tuples, where each tuple contains the root cause, the size of the group and 
+Group predictions by their root causes, rank the groups by their sizes, and link the traces to the corresponding NetFlow data.
+The returned sorted_anomaly_groups is a list of tuples, where each tuple contains the root cause, the size of the group, and 
 the traces of the group. The groups are sorted by their sizes in descending order.
 """
 sorted_anomaly_groups = faith.group_predictions(prediction_results, test_data)
@@ -61,7 +61,7 @@ sorted_anomaly_groups = faith.group_predictions(prediction_results, test_data)
 If you use FAITH in your research, please cite the following paper:
 ```
 @misc{cao2023FAITH,
-      title={FAITH: Frequency-based Network Anomaly Detectiong Using State Machines}, 
+      title={FAITH: Frequency-based Network Anomaly Detection Using State Machines}, 
       author={Clinton Cao, Agathe Blaise, Sicco Verwer, and Annibale Panichella},
       year={2023},
       eprint={TBD},
