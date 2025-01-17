@@ -32,7 +32,7 @@ def compute_state_frequencies(state_sequences: list) -> Counter:
 
 def compute_rolling_anomaly_score(test_state_sequences: list, state_frequency_train: dict) -> (list, list):
     """
-    Compute the rolling anomaly score as described in the paper "Frequency-based Network Anomaly Detection Using State Machines".
+    Compute the rolling anomaly score as described in the paper "State Frequency Estimation for Anomaly Detection".
     The anomaly score adapts itself at test-time based on the state visit frequencies observed in the test traces. 
 
     :param test_state_sequences: The state sequences extracted after running predictions on test traces.
@@ -41,7 +41,7 @@ def compute_rolling_anomaly_score(test_state_sequences: list, state_frequency_tr
     anomaly_scores = []
     sequence_anomaly_scores = []
     test_state_counts = Counter()
-    total_count_from_train = sum(state_frequency_train.values()) # used for nomalization.
+    total_count_from_train = sum(state_frequency_train.values()) # used for normalization.
 
     for state_sequence in test_state_sequences:
         sequence_score = 0.0

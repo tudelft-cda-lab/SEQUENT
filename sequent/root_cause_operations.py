@@ -30,7 +30,7 @@ def collect_traces_by_rc(prediction_results: pd.DataFrame, rc: str) -> pd.DataFr
 def find_flows_for_anomalies(grouped_prediction_results: pd.DataFrame, netflow_data:pd.DataFrame) -> pd.DataFrame:
     """
     Find the (starting) NetFlow records for anomalies using the row numbers outputted in the 
-    prediction results. FAITH learns a model from NetFlow data, grouped by their corresponding
+    prediction results. SEQUENT learns a model from NetFlow data, grouped by their corresponding
     connection. This enables to only report the starting NetFlow of the connection producing 
     malicious behavior, and we thus do not use the indices returned by the 
     "compute_rc_from_anomaly_scores" function. In he case that a model is learned from NetFlow

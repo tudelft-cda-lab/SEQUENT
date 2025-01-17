@@ -4,12 +4,12 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name='faith',
+    name='sequent',
     version='0.1.2',    
-    description='Python package of FAITH, a frequency-based method that employs state machines for the detection of network anomalies.',
+    description='Python package of SEQUENT, a frequency-based method that employs state machines for the detection of network anomalies.',
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url='https://github.com/tudelft-cda-lab/FAITH',
+    url='https://github.com/tudelft-cda-lab/SEQUENT',
     author='Clinton Cao',
     author_email='c.s.cao@tudelft.nl',
     license='MIT',
