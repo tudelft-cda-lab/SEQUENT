@@ -1,4 +1,4 @@
-# SEQEUENT: State Frequency Estimation for Anomaly Detection
+# SEQUENT: State Frequency Estimation for Anomaly Detection
 [![Licence](https://img.shields.io/github/license/Ileriayo/markdown-badges?style=for-the-badge)](./LICENSE) ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 
 ## About 
